@@ -13,9 +13,8 @@ let cartData = [];
 function ItemCard({ imgSrc, name, ratings, price, itemId }) {
   const [isFavourite, setFavourite] = useState(false);
   const [currentValue, setCurrentValue] = useState(Math.floor(ratings));
-
   const [isCart, setCart] = useState(null);
-  const [{ cart }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
     if (isCart) {
@@ -25,7 +24,7 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
         cart: cartData,
       });
     }
-  }, [isCart, dispatch]);
+  }, [isCart]);
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -64,7 +63,8 @@ function ItemCard({ imgSrc, name, ratings, price, itemId }) {
           </div>
           <i
             className="addtoCart"
-            onClick={() => setCart(Items.find((n) => n.id === itemId))}
+            onClick={() => 
+              setCart(Items.find((n) => n.id === itemId))}
           >
             <AddRounded />
           </i>
