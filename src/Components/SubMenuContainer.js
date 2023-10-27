@@ -10,7 +10,7 @@ function SubMenuContainer({ name }) {
         <i><ChevronRightRounded /></i>
       </div>
     </div>
-  )
+  );
 }
 
-export default SubMenuContainer
+export default SubMenuContainer;
