@@ -18,7 +18,7 @@ function DebitCard() {
       <div className="card_to">10/25</div>
       <div className="card_ring"></div>
     </div>
-  )
+  );
 }
 
 export default DebitCard;
