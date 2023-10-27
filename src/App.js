@@ -27,7 +27,8 @@ function App() {
   const [isMainData, setMainData] = useState(
     Items.filter((element) => element.itemId === "kathiroll01")
   );
-  const [{ cart }, dispatch] = useStateValue();
+  const [{ cart, total }, dispatch] = useStateValue();
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
@@ -50,11 +51,11 @@ function App() {
     }
 
     menuCard.forEach((n) => n.addEventListener("click", setMenuCardActive));
-  }, [isMainData, cart]);
+  }, [isMainData, cart, total, totalPrice]);
 
   //set main dish item
   const setData = (itemId) => {
-    setMainData(Items.filter((element) => element.itemId === itemId));
+    setMainData(Items.filter((element) => element.itemId == itemId));
   };
 
   return (
@@ -66,7 +67,7 @@ function App() {
         <div className="mainContainer">
           {/* Banner */}
           <div className="banner">
-            <BannerName name={"Arpita"} discount={"20"} link={"#"} />
+            <BannerName name={"Arpita"} discount={"500"} link={"#"} />
             <img
               src="https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp-55b3a.appspot.com/o/oie_Cv2ERFe4l4Zy.png?alt=media&token=2299a9ff-a4be-46e9-9162-b91ac8e5c559&_gl=1*18fh3gh*_ga*MTY4MTUzNjY1Mi4xNjk3NDQxMjc1*_ga_CW55HF8NVT*MTY5NzcwNjIzNy43LjEuMTY5NzcwNjc4MC41My4wLjA."
               alt=""
@@ -77,7 +78,7 @@ function App() {
           {/* dishContainer */}
           <div className="dishContainer">
             <div className="menuCard">
-              <SubMenuContainer name={"Arpita"} />
+              <SubMenuContainer name{"Arpita"}/>
             </div>
             <div className="rowContainer">
               {MenuItems &&
@@ -86,7 +87,7 @@ function App() {
                     <MenuCard
                       imgSrc={data.imgSrc}
                       name={data.name}
-                      isActive={data.id === 1 ? true : false}
+                      isActive={data.id == "1" ? true : false}
                     />
                   </div>
                 ))}
@@ -114,7 +115,13 @@ function App() {
           </div>
 
           {!cart ? (
-            <div></div>
+            <div className="addSomeItem">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2FemptyCart.png?alt=media&token=50b733d4-cdd9-4025-bffe-8efa4066ca24"
+                alt=""
+                className="emptyCart"
+              />
+            </div>
           ) : (
             <div className="cartCheckOutContainer">
               <div className="cartContainer">
@@ -128,6 +135,7 @@ function App() {
                         itemId={data.id}
                         name={data.name}
                         imgSrc={data.imgSrc}
+                        qty={"4"}
                         price={data.price}
                       />
                     ))}
@@ -137,8 +145,8 @@ function App() {
                 <h3>Total</h3>
                 <p>
                   <span>
-                    <CurrencyRupeeRounded /> 800
-                  </span>
+                    <CurrencyRupeeRounded /> 
+                  </span> {total}
                 </p>
               </div>
               <button className="checkOut">Check Out</button>
