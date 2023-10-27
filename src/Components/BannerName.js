@@ -1,16 +1,16 @@
 import React from 'react';
 import {CurrencyRupeeRounded} from "@mui/icons-material";
 
-function BannerName({name}) {
+function BannerName({name, discount, more}) {
   return (
     <div className='bannerContent'>
-      <h3>Hello {name}</h3>
+      <h3>Hello {name},</h3>
       <p>
-        Get free discount for every <span><CurrencyRupeeRounded />500</span> purchase
+        Get free discount for every <span><CurrencyRupeeRounded />{`${discount}`}</span>{" "} purchase
       </p>
-      <a href='link'>Learn more</a>
+      <a href={more}>Learn more</a>
     </div>
-  )
+  );
 }
 
 export default BannerName;
