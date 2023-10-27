@@ -12,7 +12,7 @@ function MenuCard({imgSrc, name, isActive}) {
         <ChevronRightRounded />
       </i>
     </div>
-  )
+  );
 }
 
-export default MenuCard
+export default MenuCard;
