@@ -10,7 +10,7 @@ let cartItems = [];
 
 function CartItem({ name, imgSrc, price, itemId }) {
   const [qty, setQty] = useState(1);
-  const [{ cart }, dispatch] = useStateValue();
+  const [{ cart, total }, dispatch] = useStateValue();
   const [itemPrice, setItemPrice] = useState(parseInt(qty) * parseInt(price));
 
   useEffect(() => {
@@ -28,13 +28,15 @@ function CartItem({ name, imgSrc, price, itemId }) {
           type: actionType.SET_CART,
           cart: cartItems,
         });
+      }else{
+        setQty(qty - 1);
+        console.log(qty);
       }
-      setQty(qty - 1);
     }
   };
 
   return (
-    <div className="cardItem">
+    <div className="cardItem" id={itemId}>
       <div className="imgBox">
         <img src={imgSrc} alt="" />
       </div>
